@@ -1,5 +1,5 @@
 {
-    "catalogVersion":  6,
+    "catalogVersion":  7,
     "updatedAt":  "2026-06-25T00:00:00.000Z",
     "sources":  [
                     {
@@ -69,7 +69,7 @@
                         "name":  "MangaLib",
                         "description":  "Russian-language manga catalog from MangaLib.",
                         "language":  "ru",
-                        "version":  1
+                        "version":  2
                     }
                 ]
 }

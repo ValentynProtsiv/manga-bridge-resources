@@ -3,7 +3,7 @@
     "id":  "mangalib",
     "adapterKey":  "mangaLib",
     "name":  "MangaLib",
-    "version":  1,
+    "version":  2,
     "language":  "ru",
     "description":  "Russian-language manga catalog from MangaLib.",
     "allowedDomains":  [

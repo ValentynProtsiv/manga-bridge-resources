@@ -40,7 +40,7 @@
                           "sourcePath":  "sources/mangalib/source.json",
                           "id":  "mangalib",
                           "iconPath":  "sources/mangalib/icon-placeholder.txt",
-                          "version":  1,
+                          "version":  2,
                           "adapterKey":  "mangaLib",
                           "safety":  {
                                          "resourceScopedQueryGet":  true,
