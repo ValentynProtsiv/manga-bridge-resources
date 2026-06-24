@@ -1,0 +1,28 @@
+﻿{
+  "id": "example-resource",
+  "adapterKey": "exampleAdapter",
+  "name": "Example Resource",
+  "version": 1,
+  "language": "en",
+  "description": "Replace this template with a real MangaBridge resource package.",
+  "capabilities": {
+    "home": false,
+    "search": false,
+    "titleDetails": false,
+    "chapters": false,
+    "chapterListPost": false,
+    "pages": false,
+    "pageImageAjax": false
+  },
+  "safety": {
+    "allowedDomains": [],
+    "guardedGetOnly": true,
+    "resourceScopedFormPost": false,
+    "resourceScopedQueryGet": false,
+    "cookies": false,
+    "auth": false,
+    "customHeaders": false,
+    "fixedRequestHeaders": [],
+    "redirects": false
+  }
+}
