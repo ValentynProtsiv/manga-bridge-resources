@@ -40,4 +40,5 @@ See:
 
 ## Current resources
 
-- Manga.in.ua (`manga-in-ua`), version 8
+- Manga.in.ua (`manga-in-ua`), version 8, language `uk`
+- MangaLib (`mangalib`), version 1, language `ru`

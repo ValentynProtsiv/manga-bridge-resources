@@ -1,0 +1,45 @@
+{
+    "schemaVersion":  3,
+    "id":  "mangalib",
+    "adapterKey":  "mangaLib",
+    "name":  "MangaLib",
+    "version":  1,
+    "language":  "ru",
+    "description":  "Russian-language manga catalog from MangaLib.",
+    "allowedDomains":  [
+                           "api.cdnlibs.org",
+                           "cover.cdnlibs.org",
+                           "cover.imglib.info",
+                           "img3.cdnlibs.org",
+                           "mangalib.me"
+                       ],
+    "capabilities":  {
+                         "search":  true,
+                         "chapterListPost":  false,
+                         "pages":  true,
+                         "pageImageAjax":  false,
+                         "chapters":  true,
+                         "home":  true,
+                         "titleDetails":  true
+                     },
+    "safety":  {
+                   "resourceScopedQueryGet":  true,
+                   "fixedRequestHeaders":  [
+                                               "Site-Id",
+                                               "Referer"
+                                           ],
+                   "redirects":  false,
+                   "resourceScopedFormPost":  false,
+                   "guardedGetOnly":  false,
+                   "customHeaders":  false,
+                   "allowedDomains":  [
+                                          "api.cdnlibs.org",
+                                          "cover.cdnlibs.org",
+                                          "cover.imglib.info",
+                                          "img3.cdnlibs.org",
+                                          "mangalib.me"
+                                      ],
+                   "auth":  false,
+                   "cookies":  false
+               }
+}

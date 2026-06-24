@@ -1,38 +1,75 @@
 {
-  "catalogVersion": 5,
-  "updatedAt": "2026-06-24T00:00:00.000Z",
-  "sources": [
-    {
-      "id": "manga-in-ua",
-      "adapterKey": "mangaInUa",
-      "name": "Manga.in.ua",
-      "version": 8,
-      "language": "uk",
-      "description": "Ukrainian-language manga catalog from Manga.in.ua.",
-      "capabilities": {
-        "home": true,
-        "search": true,
-        "titleDetails": true,
-        "chapters": true,
-        "chapterListPost": true,
-        "pages": true,
-        "pageImageAjax": true
-      },
-      "safety": {
-        "allowedDomains": [
-          "manga.in.ua"
-        ],
-        "guardedGetOnly": false,
-        "resourceScopedFormPost": true,
-        "resourceScopedQueryGet": true,
-        "cookies": false,
-        "auth": false,
-        "customHeaders": false,
-        "fixedRequestHeaders": [
-          "X-Requested-With"
-        ],
-        "redirects": false
-      }
-    }
-  ]
+    "catalogVersion":  6,
+    "updatedAt":  "2026-06-25T00:00:00.000Z",
+    "sources":  [
+                    {
+                        "id":  "manga-in-ua",
+                        "capabilities":  {
+                                             "search":  true,
+                                             "chapterListPost":  true,
+                                             "pages":  true,
+                                             "pageImageAjax":  true,
+                                             "chapters":  true,
+                                             "home":  true,
+                                             "titleDetails":  true
+                                         },
+                        "adapterKey":  "mangaInUa",
+                        "safety":  {
+                                       "resourceScopedQueryGet":  true,
+                                       "fixedRequestHeaders":  [
+                                                                   "X-Requested-With"
+                                                               ],
+                                       "redirects":  false,
+                                       "resourceScopedFormPost":  true,
+                                       "guardedGetOnly":  false,
+                                       "customHeaders":  false,
+                                       "allowedDomains":  [
+                                                              "manga.in.ua"
+                                                          ],
+                                       "auth":  false,
+                                       "cookies":  false
+                                   },
+                        "name":  "Manga.in.ua",
+                        "description":  "Ukrainian-language manga catalog from Manga.in.ua.",
+                        "language":  "uk",
+                        "version":  8
+                    },
+                    {
+                        "id":  "mangalib",
+                        "capabilities":  {
+                                             "search":  true,
+                                             "chapterListPost":  false,
+                                             "pages":  true,
+                                             "pageImageAjax":  false,
+                                             "chapters":  true,
+                                             "home":  true,
+                                             "titleDetails":  true
+                                         },
+                        "adapterKey":  "mangaLib",
+                        "safety":  {
+                                       "resourceScopedQueryGet":  true,
+                                       "fixedRequestHeaders":  [
+                                                                   "Site-Id",
+                                                                   "Referer"
+                                                               ],
+                                       "redirects":  false,
+                                       "resourceScopedFormPost":  false,
+                                       "guardedGetOnly":  false,
+                                       "customHeaders":  false,
+                                       "allowedDomains":  [
+                                                              "api.cdnlibs.org",
+                                                              "cover.cdnlibs.org",
+                                                              "cover.imglib.info",
+                                                              "img3.cdnlibs.org",
+                                                              "mangalib.me"
+                                                          ],
+                                       "auth":  false,
+                                       "cookies":  false
+                                   },
+                        "name":  "MangaLib",
+                        "description":  "Russian-language manga catalog from MangaLib.",
+                        "language":  "ru",
+                        "version":  1
+                    }
+                ]
 }

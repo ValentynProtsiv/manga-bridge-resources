@@ -1,4 +1,4 @@
-﻿const fs = require("node:fs");
+const fs = require("node:fs");
 const path = require("node:path");
 
 const rootDir = path.resolve(__dirname, "..");
@@ -54,17 +54,24 @@ function assertSourceShape(source, context) {
   assert(source.capabilities && typeof source.capabilities === "object", `${context}: capabilities are required`);
   assert(source.safety && typeof source.safety === "object", `${context}: safety is required`);
   assert(Array.isArray(source.safety.allowedDomains), `${context}: safety.allowedDomains must be array`);
+  assert(source.safety.allowedDomains.every((domain) => typeof domain === "string" && domain.length > 0), `${context}: allowed domains must be non-empty strings`);
   assert(source.safety.cookies === false, `${context}: cookies must be false`);
   assert(source.safety.auth === false, `${context}: auth must be false`);
   assert(source.safety.customHeaders === false, `${context}: customHeaders must be false`);
   assert(source.safety.redirects === false, `${context}: redirects must be false`);
+  assert(Array.isArray(source.safety.fixedRequestHeaders), `${context}: fixedRequestHeaders must be array`);
+  assert(source.safety.fixedRequestHeaders.every((header) => typeof header === "string" && header.length > 0), `${context}: fixedRequestHeaders must be non-empty strings`);
+}
+
+function comparableCatalogSource(resource) {
+  const { sourcePath, iconPath, ...catalogSource } = resource;
+  return catalogSource;
 }
 
 const repo = readJson("repo.json");
 const index = readJson("index.json");
 const minIndex = readJson("index.min.json");
 const catalog = readJson("catalog/sources.json");
-const mangaInUaPackage = readJson("sources/manga-in-ua/source.json");
 
 assert(repo.schemaVersion === 3, "repo.json schemaVersion must be 3");
 assert(Number.isInteger(repo.version) && repo.version > 0, "repo.json version must be positive integer");
@@ -78,37 +85,36 @@ assert(Number.isInteger(catalog.catalogVersion), "catalogVersion must be an inte
 assert(index.resources.length === minIndex.resources.length, "index and min index resource counts must match");
 assert(index.resources.length === catalog.sources.length, "index and catalog source counts must match");
 
+const ids = new Set();
+
 for (const resource of index.resources) {
   assertSourceShape(resource, `index:${resource?.id ?? "unknown"}`);
+  assert(!ids.has(resource.id), `index:${resource.id}: duplicate resource id`);
+  ids.add(resource.id);
   assert(typeof resource.sourcePath === "string", `index:${resource.id}: sourcePath is required`);
   assert(fs.existsSync(path.join(rootDir, resource.sourcePath)), `index:${resource.id}: sourcePath does not exist`);
   assert(typeof resource.iconPath === "string", `index:${resource.id}: iconPath is required`);
   assert(fs.existsSync(path.join(rootDir, resource.iconPath)), `index:${resource.id}: iconPath does not exist`);
+
+  const minResource = minIndex.resources.find((source) => source.id === resource.id);
+  const catalogResource = catalog.sources.find((source) => source.id === resource.id);
+  const packageSource = readJson(resource.sourcePath);
+
+  assert(minResource, `${resource.id}: missing from index.min.json`);
+  assert(catalogResource, `${resource.id}: missing from catalog/sources.json`);
+  assertSourceShape(minResource, `index.min:${resource.id}`);
+  assertSourceShape(catalogResource, `catalog:${resource.id}`);
+  assertSourceShape(packageSource, resource.sourcePath);
+
+  assertDeepEqual(minResource, resource, `${resource.id}: index.min must match index metadata`);
+  assertDeepEqual(catalogResource, comparableCatalogSource(resource), `${resource.id}: catalog must match index metadata`);
+
+  for (const field of ["id", "adapterKey", "name", "version", "language", "description"]) {
+    assert(resource[field] === packageSource[field], `${resource.id}: ${field} must match package source.json`);
+  }
+
+  assertDeepEqual(resource.capabilities, packageSource.capabilities, `${resource.id}: capabilities must match package source.json`);
+  assertDeepEqual(resource.safety, packageSource.safety, `${resource.id}: safety must match package source.json`);
 }
 
-for (const resource of minIndex.resources) {
-  assertSourceShape(resource, `index.min:${resource?.id ?? "unknown"}`);
-}
-
-for (const source of catalog.sources) {
-  assertSourceShape(source, `catalog:${source?.id ?? "unknown"}`);
-}
-
-const indexMangaInUa = index.resources.find((source) => source.id === "manga-in-ua");
-const minMangaInUa = minIndex.resources.find((source) => source.id === "manga-in-ua");
-const catalogMangaInUa = catalog.sources.find((source) => source.id === "manga-in-ua");
-
-assert(indexMangaInUa, "Manga.in.ua must exist in index.json");
-assert(minMangaInUa, "Manga.in.ua must exist in index.min.json");
-assert(catalogMangaInUa, "Manga.in.ua must exist in catalog/sources.json");
-assertSourceShape(mangaInUaPackage, "sources/manga-in-ua/source.json");
-
-for (const source of [indexMangaInUa, minMangaInUa, catalogMangaInUa]) {
-  assert(source.version === mangaInUaPackage.version, `${source.id}: version must match package source.json`);
-  assert(source.adapterKey === mangaInUaPackage.adapterKey, `${source.id}: adapterKey must match package source.json`);
-  assertDeepEqual(source.capabilities, mangaInUaPackage.capabilities, `${source.id}: capabilities must match package source.json`);
-  assertDeepEqual(source.safety, mangaInUaPackage.safety, `${source.id}: safety must match package source.json`);
-}
-
-assert(mangaInUaPackage.version === 8, "Manga.in.ua version should be 8 for current v1 catalog");
-console.log("Resources catalog validation passed.");
+console.log(`Resources catalog validation passed for ${index.resources.length} resources.`);
