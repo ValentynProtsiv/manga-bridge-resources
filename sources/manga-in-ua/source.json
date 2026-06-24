@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 3,
+  "id": "manga-in-ua",
+  "adapterKey": "mangaInUa",
+  "name": "Manga.in.ua",
+  "version": 8,
+  "language": "uk",
+  "description": "Ukrainian-language manga catalog from Manga.in.ua.",
+  "allowedDomains": [
+    "manga.in.ua"
+  ],
+  "capabilities": {
+    "home": true,
+    "search": true,
+    "titleDetails": true,
+    "chapters": true,
+    "chapterListPost": true,
+    "pages": true,
+    "pageImageAjax": true
+  },
+  "safety": {
+    "allowedDomains": [
+      "manga.in.ua"
+    ],
+    "guardedGetOnly": false,
+    "resourceScopedFormPost": true,
+    "resourceScopedQueryGet": true,
+    "cookies": false,
+    "auth": false,
+    "customHeaders": false,
+    "fixedRequestHeaders": [
+      "X-Requested-With"
+    ],
+    "redirects": false
+  }
+}

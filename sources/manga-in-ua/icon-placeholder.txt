@@ -1,0 +1,4 @@
+Manga.in.ua icon placeholder.
+
+Replace this file with the final resource icon asset when the resources
+repository gains binary asset distribution.
