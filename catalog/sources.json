@@ -1,5 +1,5 @@
 {
-    "catalogVersion":  8,
+    "catalogVersion":  9,
     "updatedAt":  "2026-06-25T00:00:00.000Z",
     "sources":  [
                     {
@@ -92,7 +92,7 @@
                                              "home":  true,
                                              "titleDetails":  true
                                          },
-                        "version":  1,
+                        "version":  2,
                         "adapterKey":  "readManga",
                         "safety":  {
                                        "resourceScopedQueryGet":  false,
@@ -105,7 +105,8 @@
                                        "customHeaders":  false,
                                        "allowedDomains":  [
                                                               "a.zazaza.me",
-                                                              "3.readmanga.ru"
+                                                              "3.readmanga.ru",
+                                                              "rm.one-way.work"
                                                           ],
                                        "auth":  false,
                                        "cookies":  true

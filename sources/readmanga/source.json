@@ -9,7 +9,7 @@
                          "home":  true,
                          "titleDetails":  true
                      },
-    "version":  1,
+    "version":  2,
     "adapterKey":  "readManga",
     "safety":  {
                    "resourceScopedQueryGet":  false,
@@ -22,7 +22,8 @@
                    "customHeaders":  false,
                    "allowedDomains":  [
                                           "a.zazaza.me",
-                                          "3.readmanga.ru"
+                                          "3.readmanga.ru",
+                                          "rm.one-way.work"
                                       ],
                    "auth":  false,
                    "cookies":  true
