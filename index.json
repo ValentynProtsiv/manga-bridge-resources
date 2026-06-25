@@ -21,7 +21,7 @@
                                                                 "manga.in.ua"
                                                             ],
                                          "auth":  false,
-                                         "cookies":  false
+                                         "cookies":  true
                                      },
                           "name":  "Manga.in.ua",
                           "capabilities":  {
@@ -34,7 +34,12 @@
                                                "titleDetails":  true
                                            },
                           "description":  "Ukrainian-language manga catalog from Manga.in.ua.",
-                          "language":  "uk"
+                          "language":  "uk",
+                          "session":  {
+                                          "clearPolicy":  "disable_app_session",
+                                          "cookiePolicy":  "resource_scoped",
+                                          "accessMode":  "optional_session"
+                                      }
                       },
                       {
                           "sourcePath":  "sources/mangalib/source.json",
@@ -60,7 +65,7 @@
                                                                 "mangalib.me"
                                                             ],
                                          "auth":  false,
-                                         "cookies":  false
+                                         "cookies":  true
                                      },
                           "name":  "MangaLib",
                           "capabilities":  {
@@ -73,7 +78,52 @@
                                                "titleDetails":  true
                                            },
                           "description":  "Russian-language manga catalog from MangaLib.",
-                          "language":  "ru"
+                          "language":  "ru",
+                          "session":  {
+                                          "clearPolicy":  "disable_app_session",
+                                          "cookiePolicy":  "resource_scoped",
+                                          "accessMode":  "optional_session"
+                                      }
+                      },
+                      {
+                          "id":  "readmanga",
+                          "capabilities":  {
+                                               "search":  true,
+                                               "chapterListPost":  false,
+                                               "pages":  true,
+                                               "pageImageAjax":  false,
+                                               "chapters":  true,
+                                               "home":  true,
+                                               "titleDetails":  true
+                                           },
+                          "version":  1,
+                          "adapterKey":  "readManga",
+                          "safety":  {
+                                         "resourceScopedQueryGet":  false,
+                                         "fixedRequestHeaders":  [
+
+                                                                 ],
+                                         "redirects":  false,
+                                         "resourceScopedFormPost":  false,
+                                         "guardedGetOnly":  false,
+                                         "customHeaders":  false,
+                                         "allowedDomains":  [
+                                                                "a.zazaza.me",
+                                                                "3.readmanga.ru"
+                                                            ],
+                                         "auth":  false,
+                                         "cookies":  true
+                                     },
+                          "name":  "ReadManga",
+                          "description":  "Russian-language manga catalog with configurable mirrors.",
+                          "language":  "ru",
+                          "session":  {
+                                          "clearPolicy":  "disable_app_session",
+                                          "cookiePolicy":  "resource_scoped",
+                                          "accessMode":  "optional_session"
+                                      },
+                          "sourcePath":  "sources/readmanga/source.json",
+                          "iconPath":  "sources/readmanga/icon-placeholder.txt"
                       }
                   ]
 }

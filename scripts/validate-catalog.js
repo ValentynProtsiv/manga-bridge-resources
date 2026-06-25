@@ -55,7 +55,11 @@ function assertSourceShape(source, context) {
   assert(source.safety && typeof source.safety === "object", `${context}: safety is required`);
   assert(Array.isArray(source.safety.allowedDomains), `${context}: safety.allowedDomains must be array`);
   assert(source.safety.allowedDomains.every((domain) => typeof domain === "string" && domain.length > 0), `${context}: allowed domains must be non-empty strings`);
-  assert(source.safety.cookies === false, `${context}: cookies must be false`);
+  assert(typeof source.safety.cookies === "boolean", `${context}: cookies must be boolean`);
+  if (source.safety.cookies) {
+    assert(source.session && source.session.cookiePolicy === "resource_scoped", `${context}: cookie-enabled resources must declare resource_scoped session`);
+    assert(source.session.accessMode === "optional_session" || source.session.accessMode === "session_required", `${context}: cookie-enabled resources must require explicit session mode`);
+  }
   assert(source.safety.auth === false, `${context}: auth must be false`);
   assert(source.safety.customHeaders === false, `${context}: customHeaders must be false`);
   assert(source.safety.redirects === false, `${context}: redirects must be false`);
@@ -118,3 +122,5 @@ for (const resource of index.resources) {
 }
 
 console.log(`Resources catalog validation passed for ${index.resources.length} resources.`);
+
+

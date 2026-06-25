@@ -1,5 +1,5 @@
 {
-    "catalogVersion":  7,
+    "catalogVersion":  8,
     "updatedAt":  "2026-06-25T00:00:00.000Z",
     "sources":  [
                     {
@@ -27,12 +27,17 @@
                                                               "manga.in.ua"
                                                           ],
                                        "auth":  false,
-                                       "cookies":  false
+                                       "cookies":  true
                                    },
                         "name":  "Manga.in.ua",
                         "description":  "Ukrainian-language manga catalog from Manga.in.ua.",
                         "language":  "uk",
-                        "version":  8
+                        "version":  8,
+                        "session":  {
+                                        "clearPolicy":  "disable_app_session",
+                                        "cookiePolicy":  "resource_scoped",
+                                        "accessMode":  "optional_session"
+                                    }
                     },
                     {
                         "id":  "mangalib",
@@ -64,12 +69,55 @@
                                                               "mangalib.me"
                                                           ],
                                        "auth":  false,
-                                       "cookies":  false
+                                       "cookies":  true
                                    },
                         "name":  "MangaLib",
                         "description":  "Russian-language manga catalog from MangaLib.",
                         "language":  "ru",
-                        "version":  2
+                        "version":  2,
+                        "session":  {
+                                        "clearPolicy":  "disable_app_session",
+                                        "cookiePolicy":  "resource_scoped",
+                                        "accessMode":  "optional_session"
+                                    }
+                    },
+                    {
+                        "id":  "readmanga",
+                        "capabilities":  {
+                                             "search":  true,
+                                             "chapterListPost":  false,
+                                             "pages":  true,
+                                             "pageImageAjax":  false,
+                                             "chapters":  true,
+                                             "home":  true,
+                                             "titleDetails":  true
+                                         },
+                        "version":  1,
+                        "adapterKey":  "readManga",
+                        "safety":  {
+                                       "resourceScopedQueryGet":  false,
+                                       "fixedRequestHeaders":  [
+
+                                                               ],
+                                       "redirects":  false,
+                                       "resourceScopedFormPost":  false,
+                                       "guardedGetOnly":  false,
+                                       "customHeaders":  false,
+                                       "allowedDomains":  [
+                                                              "a.zazaza.me",
+                                                              "3.readmanga.ru"
+                                                          ],
+                                       "auth":  false,
+                                       "cookies":  true
+                                   },
+                        "name":  "ReadManga",
+                        "description":  "Russian-language manga catalog with configurable mirrors.",
+                        "language":  "ru",
+                        "session":  {
+                                        "clearPolicy":  "disable_app_session",
+                                        "cookiePolicy":  "resource_scoped",
+                                        "accessMode":  "optional_session"
+                                    }
                     }
                 ]
 }

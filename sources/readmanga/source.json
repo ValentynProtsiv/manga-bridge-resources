@@ -1,18 +1,5 @@
 {
-    "schemaVersion":  3,
-    "id":  "mangalib",
-    "adapterKey":  "mangaLib",
-    "name":  "MangaLib",
-    "version":  2,
-    "language":  "ru",
-    "description":  "Russian-language manga catalog from MangaLib.",
-    "allowedDomains":  [
-                           "api.cdnlibs.org",
-                           "cover.cdnlibs.org",
-                           "cover.imglib.info",
-                           "img3.cdnlibs.org",
-                           "mangalib.me"
-                       ],
+    "id":  "readmanga",
     "capabilities":  {
                          "search":  true,
                          "chapterListPost":  false,
@@ -22,26 +9,29 @@
                          "home":  true,
                          "titleDetails":  true
                      },
+    "version":  1,
+    "adapterKey":  "readManga",
     "safety":  {
-                   "resourceScopedQueryGet":  true,
+                   "resourceScopedQueryGet":  false,
                    "fixedRequestHeaders":  [
-                                               "Site-Id",
-                                               "Referer"
+
                                            ],
                    "redirects":  false,
                    "resourceScopedFormPost":  false,
                    "guardedGetOnly":  false,
                    "customHeaders":  false,
                    "allowedDomains":  [
-                                          "api.cdnlibs.org",
-                                          "cover.cdnlibs.org",
-                                          "cover.imglib.info",
-                                          "img3.cdnlibs.org",
-                                          "mangalib.me"
+                                          "a.zazaza.me",
+                                          "3.readmanga.ru"
                                       ],
                    "auth":  false,
                    "cookies":  true
                },
+    "name":  "ReadManga",
+    "description":  "Russian-language manga catalog with configurable mirrors.",
+    "language":  "ru",
+    "sourcePath":  "sources/readmanga/source.json",
+    "iconPath":  "sources/readmanga/icon-placeholder.txt",
     "session":  {
                     "clearPolicy":  "disable_app_session",
                     "cookiePolicy":  "resource_scoped",
